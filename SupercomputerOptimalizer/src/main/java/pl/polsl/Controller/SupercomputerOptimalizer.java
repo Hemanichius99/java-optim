@@ -23,12 +23,12 @@ public class SupercomputerOptimalizer {
         ClasterModel clusterModel = new pl.polsl.Model.ClasterModel(MEMORY);
         Queue<TaskModel> taskQueueModel = new ArrayDeque<>();
         
-        ConsoleView view - new pl.polsl.View.ConsoleView();
+        var view = new pl.polsl.View.ConsoleView();
         
         new ClasterController(clusterModel, view);
-        new TaskController(, view);
+        new Controller(taskQueueModel, view);
         
-        view.print();
+        view.print("koniec.");
     /*  var claster = new pl.polsl.Model.ClasterModel(MEMORY);
         var view = new ConsoleView();
         

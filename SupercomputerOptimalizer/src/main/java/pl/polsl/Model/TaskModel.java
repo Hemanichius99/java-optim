@@ -19,4 +19,7 @@ public class TaskModel {
         this.taskId = taskId;
         this.requiredCPUModel = requiredCPUModel;
     }
+    public int getId() {
+        return this.taskId;
+    }
 }
