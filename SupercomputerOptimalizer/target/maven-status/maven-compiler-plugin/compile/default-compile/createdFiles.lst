@@ -1,5 +1,7 @@
 pl\polsl\Model\ComputerModel.class
-pl\polsl\Model\TaskModel.class
 pl\polsl\Controller\SupercomputerOptimalizer.class
+pl\polsl\Model\TaskModel.class
+pl\polsl\Controller\Controller.class
 pl\polsl\Model\ClasterModel.class
 pl\polsl\View\ConsoleView.class
+pl\polsl\Exceptions\NotEnoughMemoryException.class

@@ -11,22 +11,25 @@ import java.util.Queue;
 import java.util.ArrayDeque;
 
 /**
- *
+ * @version 1.0
  * @author Remigiusz Limański
  */
 public class SupercomputerOptimalizer {
-    private static final int MEMORY = 65536;
-    
+    /**
+     * Main function of that program, it is using MVC to connect the modules.
+     * @param args Array of string values, this program should be executed like: java -jar SuperComputerOptimalizer.jar $modelCPU $liczba_wezlow $ilosc_pamieci");
+     */
     public static void main(String[] args) {
         
         
-        ClasterModel clusterModel = new pl.polsl.Model.ClasterModel(MEMORY);
-        Queue<TaskModel> taskQueueModel = new ArrayDeque<>();
+        ClasterModel clusterModel = new pl.polsl.Model.ClasterModel();
+        ArrayDeque<TaskModel> taskQueueModel = new ArrayDeque<>();
         
         var view = new pl.polsl.View.ConsoleView();
         
-        new ClasterController(clusterModel, view);
-        new Controller(taskQueueModel, view);
+        var controller = new Controller(clusterModel, taskQueueModel, view);
+        controller.handleArgs(args); // java -jar SuperComputerOptimalizer.jar $modelCPU $liczba_wezlow $ilosc_pamieci");
+        controller.run();
         
         view.print("koniec.");
     /*  var claster = new pl.polsl.Model.ClasterModel(MEMORY);
