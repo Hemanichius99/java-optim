@@ -5,6 +5,8 @@
 package pl.polsl.Model;
 
 import java.util.ArrayList;
+import java.util.Queue;
+import java.util.ArrayDeque;
 
 /**
  *
@@ -36,5 +38,13 @@ public class ClasterModel { // Model oparty o wspólną pamięć !!!
     
     public int numberOfNodes() {
         return computers.size();
+    }
+    
+    public Queue<TaskModel> findQueue(ArrayDeque<TaskModel> tasks) {
+        Queue<TaskModel> queue = new ArrayDeque<>();
+        
+        // Algorytm
+        
+        return queue;
     }
 }

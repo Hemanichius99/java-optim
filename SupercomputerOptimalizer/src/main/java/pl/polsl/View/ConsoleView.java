@@ -13,7 +13,7 @@ import pl.polsl.Model.ComputerModel;
 public class ConsoleView {
     
     
-    public void print(String msg) {
-        System.out.println(msg);
+    public void print() {
+        System.out.println("");
     }
 }

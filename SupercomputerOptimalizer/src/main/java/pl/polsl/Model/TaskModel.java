@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author SuperStudent-PL
  */
 public class TaskModel {
-    //private ArrayList<int> demandedMemoryForEachNode = new ArrayList<>(); // Size == numberOfNodes
+    private ArrayList<Integer> demandedMemoryForEachNode = new ArrayList<>(); // size == numberOfNodes
     private int taskId;
     private String requiredCPUModel;
     
