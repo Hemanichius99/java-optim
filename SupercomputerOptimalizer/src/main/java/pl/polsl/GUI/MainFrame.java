@@ -36,7 +36,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         OkButton = new javax.swing.JButton();
         CommonMemoryTextField = new javax.swing.JTextField();
-        CPUModelTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         AddCPUButton = new javax.swing.JButton();
@@ -53,6 +52,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         CPUInfoLabel = new javax.swing.JLabel();
         TaskInfoLabel = new javax.swing.JLabel();
+        CPUModelTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,10 +63,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         CommonMemoryTextField.setNextFocusableComponent(CPUModelTextField);
         CommonMemoryTextField.addActionListener(this::CommonMemoryTextFieldActionPerformed);
-
-        CPUModelTextField.setFocusable(false);
-        CPUModelTextField.setNextFocusableComponent(AddCPUButton);
-        CPUModelTextField.addActionListener(this::CPUModelTextFieldActionPerformed);
 
         jLabel1.setText("Wspolna pamiec");
 
@@ -94,6 +90,7 @@ public class MainFrame extends javax.swing.JFrame {
         AddTaskButton.addActionListener(this::AddTaskButtonActionPerformed);
 
         FInalQueueLabel.setText("Wynikowa kolejka");
+        FInalQueueLabel.setVisible(false);
 
         jLabel6.setText("Wymagana pamiec");
 
@@ -103,8 +100,13 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel7.setText("Identyfikator zadania");
 
         CPUInfoLabel.setText("Info o dodaniu CPU");
+        CPUInfoLabel.setVisible(false);
 
         TaskInfoLabel.setText("Info o dodaniu zadania");
+        TaskInfoLabel.setVisible(false);
+
+        CPUModelTextField.setNextFocusableComponent(AddCPUButton);
+        CPUModelTextField.addActionListener(this::CPUModelTextFieldActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,10 +120,10 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(CommonMemoryTextField)
-                            .addComponent(CPUModelTextField)
                             .addComponent(CPUInfoLabel)
-                            .addComponent(AddCPUButton, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                            .addComponent(AddCPUButton, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(CPUModelTextField))
+                        .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TaskInfoLabel)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,11 +180,12 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DemandedMemoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DemandedMemoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CPUModelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CPUModelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, 28)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddTaskButton)
@@ -195,14 +198,12 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(OkButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FInalQueueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         OkButton.getAccessibleContext().setAccessibleDescription("Zatwierdz i znajdz optymalna kolejke");
         CommonMemoryTextField.getAccessibleContext().setAccessibleName("Wspolna pamiec");
         CommonMemoryTextField.getAccessibleContext().setAccessibleDescription("W bajtach");
-        CPUModelTextField.getAccessibleContext().setAccessibleName("Nazwa modelu CPU");
-        CPUModelTextField.getAccessibleContext().setAccessibleDescription("Nazwa konkretnego modelu CPU");
         AddCPUButton.getAccessibleContext().setAccessibleDescription("Dodaje procesor do superkomputera");
         TaskIdTextField.getAccessibleContext().setAccessibleName("Identyfikator zadania");
         TaskIdTextField.getAccessibleContext().setAccessibleDescription("liczba calkowita");
@@ -213,6 +214,8 @@ public class MainFrame extends javax.swing.JFrame {
         AddTaskButton.getAccessibleContext().setAccessibleDescription("Dodaj zadanie do kolejki");
         DemandedMemoryTextField.getAccessibleContext().setAccessibleName("Wymagana pamiec");
         DemandedMemoryTextField.getAccessibleContext().setAccessibleDescription("w Batjach, wymagana wspolna pamiec do wykonania zadania");
+        CPUModelTextField.getAccessibleContext().setAccessibleName("CPUModel");
+        CPUModelTextField.getAccessibleContext().setAccessibleDescription("Nazwa modelu CPU dla wezla");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -227,6 +230,7 @@ public class MainFrame extends javax.swing.JFrame {
             text += " " + i++ + ". " + t.getId();
         }
         
+        FInalQueueLabel.setVisible(true);
         FInalQueueLabel.setText(text);
     }//GEN-LAST:event_OkButtonActionPerformed
 
@@ -236,6 +240,7 @@ public class MainFrame extends javax.swing.JFrame {
         ComputerModel computer = new ComputerModel(CPUModelTextField.getText());
         clusterModel.addComputer(computer);
         
+        CPUInfoLabel.setVisible(true);
         CPUInfoLabel.setText("Dodano wezel oparty o model: " + computer.getModel());
     }//GEN-LAST:event_AddCPUButtonActionPerformed
 
@@ -248,12 +253,9 @@ public class MainFrame extends javax.swing.JFrame {
         
         taskModels.add(task);
         
+        TaskInfoLabel.setVisible(true);
         TaskInfoLabel.setText("Dodano zadanie T_ID=" + task.getId());
     }//GEN-LAST:event_AddTaskButtonActionPerformed
-
-    private void CPUModelTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPUModelTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CPUModelTextFieldActionPerformed
 
     private void DemandedMemoryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DemandedMemoryTextFieldActionPerformed
         // TODO add your handling code here:
@@ -262,6 +264,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void CommonMemoryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CommonMemoryTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CommonMemoryTextFieldActionPerformed
+
+    private void CPUModelTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPUModelTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CPUModelTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,8 +295,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     // Models
-    private ClasterModel clusterModel;
-    private ArrayDeque<TaskModel> taskModels;
+    private ClasterModel clusterModel = new pl.polsl.Model.ClasterModel();;
+    private ArrayDeque<TaskModel> taskModels = new ArrayDeque<>();;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCPUButton;
