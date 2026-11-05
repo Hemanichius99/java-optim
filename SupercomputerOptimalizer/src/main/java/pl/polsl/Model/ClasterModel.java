@@ -71,26 +71,4 @@ public class ClasterModel { // Common memory supercomputer model for beginning
     public int numberOfNodes() {
         return computers.size();
     }
-
-    /**
-     * Main algorithm that finds optimal order of tasks.
-     *
-     * @param tasks queue of tasks that we want to manage.
-     * @return queue of tasks, but with optimal order of tasks.
-     * @throws NotEnoughMemoryException when there is not enough memory to
-     * perform any task.
-     */
-    public Queue<TaskModel> findQueue(ArrayDeque<TaskModel> tasks) {
-        Queue<TaskModel> queue = new ArrayDeque<>();
-
-        for (var task : tasks) {
-            if (task.getDemandedMemory() > this.fullMemory) {
-                throw new NotEnoughMemoryException(task.getId()); // Not enough memory to perform that task tid
-            }
-        }
-
-        // Alogorithm of seraching optimal order of tasks here STRATEGY PATTERN.
-        // TODO implementation
-        return queue;
-    }
 }

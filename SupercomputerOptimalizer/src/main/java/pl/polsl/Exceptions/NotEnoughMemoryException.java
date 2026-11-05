@@ -9,20 +9,26 @@ package pl.polsl.Exceptions;
  * @author uzytkownikr
  */
 public class NotEnoughMemoryException extends RuntimeException {
+
     private final int taskId;
+
     /**
      * Constructor.
-     * @param taskId Id of task that is impossible to perform due to that exception.
+     *
+     * @param taskId Id of task that is impossible to perform due to that
+     * exception.
      */
     public NotEnoughMemoryException(int taskId) {
         super("Nie ma wystarczajaco pamieci by zrealizowac zadanie: " + taskId);
         this.taskId = taskId;
     }
+
     /**
      * Getter for taskId.
+     *
      * @return taskId.
      */
     public int getTaskId() {
         return this.taskId;
     }
- }
+}
