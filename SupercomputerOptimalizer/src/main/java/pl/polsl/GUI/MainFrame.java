@@ -5,17 +5,16 @@
 package pl.polsl.GUI;
 
 import java.util.ArrayDeque;
-import java.util.Set;
 import pl.polsl.Model.ClasterModel;
 import pl.polsl.Model.ComputerModel;
 import pl.polsl.Model.TaskModel;
 
 /**
- *
+ * @version 1.1
  * @author uzytkownikr
  */
 public class MainFrame extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainFrame.class.getName());
 
     /**
@@ -222,37 +221,38 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void OkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkButtonActionPerformed
         var queue = clusterModel.findQueue(taskModels);
-        
+
         String text = "Wynik:";
-        
+
         int i = 1;
-        for (TaskModel t : queue) {
+        for (TaskModel t : queue) { // TODO call external function QueueToString(queue) in order for easier code.
             text += " " + i++ + ". " + t.getId();
         }
-        
+
         FInalQueueLabel.setVisible(true);
         FInalQueueLabel.setText(text);
     }//GEN-LAST:event_OkButtonActionPerformed
 
     private void AddCPUButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCPUButtonActionPerformed
         clusterModel.setFullMemory(Integer.parseInt(CommonMemoryTextField.getText()));
-        
+
         ComputerModel computer = new ComputerModel(CPUModelTextField.getText());
         clusterModel.addComputer(computer);
-        
+
         CPUInfoLabel.setVisible(true);
         CPUInfoLabel.setText("Dodano wezel oparty o model: " + computer.getModel());
     }//GEN-LAST:event_AddCPUButtonActionPerformed
 
     private void AddTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTaskButtonActionPerformed
-        int tId = Integer.parseInt(TaskIdTextField.getText());
         int demandedMemory = Integer.parseInt(DemandedMemoryTextField.getText());
-        String requiredModel = RequiredCPUModelTextField.getText();
         int numberOfNodes = Integer.parseInt(NumberOfNodesTextField.getText());
-        TaskModel task = new TaskModel(demandedMemory, numberOfNodes, tId, requiredModel);       
-        
+        int tId = Integer.parseInt(TaskIdTextField.getText());
+        String requiredModel = RequiredCPUModelTextField.getText();
+
+        TaskModel task = new TaskModel(demandedMemory, numberOfNodes, tId, requiredModel);
+
         taskModels.add(task);
-        
+
         TaskInfoLabel.setVisible(true);
         TaskInfoLabel.setText("Dodano zadanie T_ID=" + task.getId());
     }//GEN-LAST:event_AddTaskButtonActionPerformed
@@ -289,14 +289,16 @@ public class MainFrame extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new MainFrame().setVisible(true));
     }
-    
+
     // Models
-    private ClasterModel clusterModel = new pl.polsl.Model.ClasterModel();;
-    private ArrayDeque<TaskModel> taskModels = new ArrayDeque<>();;
+    private ClasterModel clusterModel = new pl.polsl.Model.ClasterModel();
+    ;
+    private ArrayDeque<TaskModel> taskModels = new ArrayDeque<>();
+    ;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCPUButton;

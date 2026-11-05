@@ -4,36 +4,19 @@
 
 package pl.polsl.Controller;
 
-import pl.polsl.View.*;
-import pl.polsl.Model.*;
-import java.util.Scanner;
-import java.util.Queue;
-import java.util.ArrayDeque;
 import pl.polsl.GUI.*;
 
 /**
- * @version 1.0
+ * @version 1.1
  * @author Remigiusz Limański
  */
 public class SupercomputerOptimalizer {
     /**
      * Main function of that program, it is using MVC to connect the modules.
-     * @param args Array of string values, this program should be executed like: java -jar SuperComputerOptimalizer.jar $modelCPU $liczba_wezlow $ilosc_pamieci");
+     * After addition of swing GUI it calls buidGUI from MainFrame class, and thats all, so args now don't matter
+     * @param args now after adding gui useless, but for being able to quickly reprogrm to consolveView it will remain.
      */
     public static void main(String[] args) {
-        
-       
-        ClasterModel clusterModel = new pl.polsl.Model.ClasterModel();
-        ArrayDeque<TaskModel> taskQueueModel = new ArrayDeque<>();
-        
-        
         MainFrame.buildGUI();
-        /*var view = new pl.polsl.View.ConsoleView();
-        
-        var controller = new Controller(clusterModel, taskQueueModel, view);
-        controller.handleArgs(args); // java -jar SuperComputerOptimalizer.jar $modelCPU $liczba_wezlow $ilosc_pamieci");
-        controller.run(); */
-        
-        //view.print("koniec");
     }
 }

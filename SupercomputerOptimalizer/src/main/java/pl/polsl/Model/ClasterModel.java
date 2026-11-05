@@ -10,13 +10,15 @@ import java.util.ArrayDeque;
 import pl.polsl.Exceptions.NotEnoughMemoryException;
 
 /**
- * @version 1.0
+ * @version 1.1
  * @author SuperStudent-PL
  */
-public class ClasterModel { // Model oparty o wspólną pamięć !!!
+public class ClasterModel { // Common memory supercomputer model for beginning
+
     private ArrayList<ComputerModel> computers = new ArrayList<>();
     private int memoryUsed;
     private int fullMemory;
+
     /**
      * Constructor sets field-values to 0
      */
@@ -24,58 +26,71 @@ public class ClasterModel { // Model oparty o wspólną pamięć !!!
         this.fullMemory = 0;
         this.memoryUsed = 0;
     }
+
     /**
      * sets new value for field fullMemory
-     * @param fullMemory new amount of common full memmory in supercomputer in bytes
+     *
+     * @param fullMemory new amount of common full memmory in supercomputer in
+     * bytes
      */
     public void setFullMemory(int fullMemory) {
         this.fullMemory = fullMemory;
     }
+
     /**
      * Adds new cpu to supercomputer cluster to arraylist.
+     *
      * @param computer Object of computer to add to arraylist of computers
      */
     public void addComputer(ComputerModel computer) {
         computers.add(computer);
     }
+
     /**
-     * Simulates use of memory, 
-     * @param memoryToUse In bytes value of memory that we want to assign to some task
+     * Simulates use of memory,
+     *
+     * @param memoryToUse In bytes value of memory that we want to assign to
+     * some task
      * @return boolean value of thus our assertion failed or not.
      */
     public boolean useMemory(int memoryToUse) {
         if (fullMemory - memoryUsed > memoryToUse) {
             memoryUsed += memoryToUse;
-            
-            return true; // Sukces
+
+            return true; // Success
         }
-        
-        return false; // Porazka, nie udalo sie zajac pamieci, brak zasobow
+
+        return false; // Failure, Could not allocate memory, no resources
     }
+
     /**
      * Way to get number of nodes in supercomputer.
+     *
      * @return number of nodes in cluster so size of arraylist.
      */
     public int numberOfNodes() {
         return computers.size();
     }
+
     /**
      * Main algorithm that finds optimal order of tasks.
+     *
      * @param tasks queue of tasks that we want to manage.
      * @return queue of tasks, but with optimal order of tasks.
-     * @throws NotEnoughMemoryException when there is not enough memory to perform any task.
+     * @throws NotEnoughMemoryException when there is not enough memory to
+     * perform any task.
      */
     public Queue<TaskModel> findQueue(ArrayDeque<TaskModel> tasks) {
         Queue<TaskModel> queue = new ArrayDeque<>();
-        
+
         for (var task : tasks) {
             if (task.getDemandedMemory() > this.fullMemory) {
-                throw new NotEnoughMemoryException(task.getId()); // Za malo pamieci by wykonac to zadanie
+                throw new NotEnoughMemoryException(task.getId()); // Not enough memory to perform that task tid
             }
         }
-        
-        // Algorytm szulania optymalnej kolejności zadań ma tutaj byc
-        // TODO implementacja
+
+        // Alogorithm of seraching optimal order of tasks here STRATEGY PATTERN.
+        // TODO implementation
         return queue;
     }
 }

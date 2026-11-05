@@ -101,7 +101,7 @@ public class Controller {
     /**
      * Main run() program function, it's divided into smaller private function for easier understandment.
      */
-    public void run() { // TODO walidacja
+    public void run() {
         view.print("Witaj w programie do ustalania kolejki zadan dla superkomputera !\n");
         
         if (clusterModel.numberOfNodes() == 0) {
