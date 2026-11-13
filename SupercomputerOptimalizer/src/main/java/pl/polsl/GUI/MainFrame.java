@@ -5,12 +5,17 @@
 package pl.polsl.GUI;
 
 import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.Set;
 import pl.polsl.Model.ClasterModel;
 import pl.polsl.Model.ComputerModel;
+import pl.polsl.Model.FindModel;
 import pl.polsl.Model.TaskModel;
+import pl.polsl.strategy.FindTaskQueueStrategy;
+import pl.polsl.strategy.HStandardFindTaskQueueStrategy;
 
 /**
- * @version 1.1
+ * @version 1.2
  * @author uzytkownikr
  */
 public class MainFrame extends javax.swing.JFrame {
@@ -220,7 +225,11 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void OkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkButtonActionPerformed
-        var queue = clusterModel.findQueue(taskModels);
+        FindModel findModel = new FindModel();
+        
+        findModel.setStrategy(new HStandardFindTaskQueueStrategy());
+        
+        Queue<TaskModel> queue = findModel.findQueue(taskModels, clusterModel);
 
         String text = "Wynik:";
 

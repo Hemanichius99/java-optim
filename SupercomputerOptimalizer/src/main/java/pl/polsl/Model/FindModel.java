@@ -6,11 +6,10 @@ package pl.polsl.Model;
 
 import java.util.Collection;
 import java.util.Queue;
-import pl.polsl.Exceptions.NotEnoughMemoryException;
 import pl.polsl.strategy.FindTaskQueueStrategy;
 
 /**
- * @version 1.0
+ * @version 1.1
  * @author uzytkownikr
  */
 public class FindModel {
@@ -28,11 +27,11 @@ public class FindModel {
      * @param tasks same as in the interface.
      * @return result calculated via certain strategy.
      */
-     public Queue<TaskModel> findQueue(Collection<TaskModel> tasks) {
+     public Queue<TaskModel> findQueue(Collection<TaskModel> tasks, ClasterModel cluster) {
         if (strategy == null) {
             throw new IllegalStateException("Strategy not set");
         }
         
-        return strategy.find(tasks);
+        return strategy.find(tasks, cluster);
     }
 }

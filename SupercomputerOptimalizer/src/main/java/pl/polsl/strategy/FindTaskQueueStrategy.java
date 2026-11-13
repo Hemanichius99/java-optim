@@ -6,10 +6,11 @@ package pl.polsl.strategy;
 
 import java.util.Collection;
 import java.util.Queue;
+import pl.polsl.Model.ClasterModel;
 import pl.polsl.Model.TaskModel;
 
 /**
- * @version 1.1
+ * @version 1.2
  * @author uzytkownikr
  */
 public interface FindTaskQueueStrategy {
@@ -21,5 +22,5 @@ public interface FindTaskQueueStrategy {
      * @param tasks tasks waiting to be ordered.
      * @return new queue with the same tasks in the chosen execution order.
      */
-    Queue<TaskModel> find(Collection<TaskModel> tasks);
+    Queue<TaskModel> find(Collection<TaskModel> tasks, ClasterModel cluster);
 }

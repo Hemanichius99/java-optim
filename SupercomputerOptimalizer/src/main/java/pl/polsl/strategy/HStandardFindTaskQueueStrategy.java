@@ -6,10 +6,11 @@ package pl.polsl.strategy;
 
 import java.util.ArrayDeque;
 import java.util.Collection;
+import pl.polsl.Model.ClasterModel;
 import pl.polsl.Model.TaskModel;
 
 /**
- *
+ * @version 1.1
  * @author uzytkownikr
  */
 public class HStandardFindTaskQueueStrategy implements FindTaskQueueStrategy {
@@ -22,7 +23,7 @@ public class HStandardFindTaskQueueStrategy implements FindTaskQueueStrategy {
      * @return Ordered queue represented there as ArrayDeque.
      */
     @Override
-    public ArrayDeque<TaskModel> find(Collection<TaskModel> tasks) {
+    public ArrayDeque<TaskModel> find(Collection<TaskModel> tasks, ClasterModel cluster) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

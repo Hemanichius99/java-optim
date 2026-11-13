@@ -12,7 +12,8 @@ import pl.polsl.Model.TaskModel;
 import pl.polsl.View.ConsoleView;
 
 /**
- * @version 1.0
+ * Not supported anymore.
+ * @version 1.1
  * @author uzytkownikr
  */
 public class Controller {
