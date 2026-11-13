@@ -8,8 +8,10 @@ import java.util.ArrayDeque;
 import pl.polsl.Exceptions.NotEnoughMemoryException;
 import pl.polsl.Model.ClasterModel;
 import pl.polsl.Model.ComputerModel;
+import pl.polsl.Model.FindModel;
 import pl.polsl.Model.TaskModel;
 import pl.polsl.View.ConsoleView;
+import pl.polsl.strategy.HStandardFindTaskQueueStrategy;
 
 /**
  * Not supported anymore.
@@ -54,7 +56,6 @@ public class Controller {
             TaskModel task = new TaskModel(
                     Integer.parseInt(view.readLine("Podaj Liczbe wymaganej pamieci(w Bajtach): ")),
                     Integer.parseInt(view.readLine("Podaj potrzebna liczbe wezlow: ")),
-                    Integer.parseInt(view.readLine("Podaj id zadania: ")),
                     view.readLine("Podaj nazwe wymaganego modelu: "));
             taskModels.add(task);
 
@@ -121,7 +122,10 @@ public class Controller {
         readTasks();
 
         try {
-            clusterModel.findQueue(taskModels);
+            FindModel fm = new FindModel();
+            fm.setStrategy(new HStandardFindTaskQueueStrategy());
+            
+            fm.findQueue(taskModels, clusterModel);
         } catch (NotEnoughMemoryException e) {
             view.print("Blad: " + e.getMessage());
         }

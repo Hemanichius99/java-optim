@@ -4,5 +4,8 @@ C:\Users\heman\Documents\Projects\java\projekt\SupercomputerOptimalizer\src\main
 C:\Users\heman\Documents\Projects\java\projekt\SupercomputerOptimalizer\src\main\java\pl\polsl\GUI\MainFrame.java
 C:\Users\heman\Documents\Projects\java\projekt\SupercomputerOptimalizer\src\main\java\pl\polsl\Model\ClasterModel.java
 C:\Users\heman\Documents\Projects\java\projekt\SupercomputerOptimalizer\src\main\java\pl\polsl\Model\ComputerModel.java
+C:\Users\heman\Documents\Projects\java\projekt\SupercomputerOptimalizer\src\main\java\pl\polsl\Model\FindModel.java
 C:\Users\heman\Documents\Projects\java\projekt\SupercomputerOptimalizer\src\main\java\pl\polsl\Model\TaskModel.java
+C:\Users\heman\Documents\Projects\java\projekt\SupercomputerOptimalizer\src\main\java\pl\polsl\strategy\FindTaskQueueStrategy.java
+C:\Users\heman\Documents\Projects\java\projekt\SupercomputerOptimalizer\src\main\java\pl\polsl\strategy\HStandardFindTaskQueueStrategy.java
 C:\Users\heman\Documents\Projects\java\projekt\SupercomputerOptimalizer\src\main\java\pl\polsl\View\ConsoleView.java

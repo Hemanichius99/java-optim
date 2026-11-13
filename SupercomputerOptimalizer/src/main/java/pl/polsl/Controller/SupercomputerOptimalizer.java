@@ -10,7 +10,18 @@ import pl.polsl.GUI.*;
  * @author Remigiusz Limański
  */
 public class SupercomputerOptimalizer {
-
+    // TODO !!! Tasks 
+    /*  
+        2. HStandardFindTaskQueueStrategy implementation of heuristic findQueue strat
+        3. Table with current Tasks and Table with current nodes(CPUs) in GUI
+        4. GUI Field validation
+        5. Correct exception throwing and handling. There are somwhere unhandled exceptions
+        6. Final version from 2nd lab includes pt3.
+        Finally. Code review according to KISS, DRY, SOLID.
+        Post-Finally. Doc anaylze and add whats needed.
+    */
+    
+    
     /**
      * Main function of that program, it is using MVC to connect the modules.
      * After addition of swing GUI it calls buidGUI from MainFrame class, and

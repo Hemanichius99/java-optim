@@ -12,7 +12,7 @@ public class TaskModel {
 
     private final int demandedMemory;
     private final int numberOfNodes;
-    private final int taskId;
+    private static int taskId;
     private final String requiredCPUModel;
 
     /**
@@ -24,11 +24,11 @@ public class TaskModel {
      * @param taskId integer number that represents id of that task.
      * @param requiredCPUModel required cpu model for a task.
      */
-    public TaskModel(int demandedMemory, int numberOfNodes, int taskId, String requiredCPUModel) {
+    public TaskModel(int demandedMemory, int numberOfNodes, String requiredCPUModel) {
         this.demandedMemory = demandedMemory;
         this.numberOfNodes = numberOfNodes;
-        this.taskId = taskId;
         this.requiredCPUModel = requiredCPUModel;
+        ++taskId;
     }
 
     /**
