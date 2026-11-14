@@ -27,11 +27,11 @@ public class FindModel {
      * @param tasks same as in the interface.
      * @return result calculated via certain strategy.
      */
-     public Queue<TaskModel> findQueue(Collection<TaskModel> tasks, ClasterModel cluster) {
+     public Queue<TaskModel> findQueue(TaskQueueModel taskQueue, ClasterModel cluster) {
         if (strategy == null) {
             throw new IllegalStateException("Strategy not set");
         }
         
-        return strategy.find(tasks, cluster);
+        return strategy.find(taskQueue, cluster);
     }
 }

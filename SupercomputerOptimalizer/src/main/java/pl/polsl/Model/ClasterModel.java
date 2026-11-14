@@ -7,7 +7,10 @@ package pl.polsl.Model;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.ArrayDeque;
+import java.util.Collections;
+import java.util.List;
 import pl.polsl.Exceptions.NotEnoughMemoryException;
+import pl.polsl.Observer.ClusterListener;
 
 /**
  * @version 1.1
@@ -15,7 +18,8 @@ import pl.polsl.Exceptions.NotEnoughMemoryException;
  */
 public class ClasterModel { // Common memory supercomputer model for beginning
 
-    private ArrayList<ComputerModel> computers = new ArrayList<>();
+    private final List<ComputerModel> computers = new ArrayList<>();
+    private final List<ClusterListener> listeners = new ArrayList<>();
     private int memoryUsed;
     private int fullMemory;
 
@@ -25,6 +29,14 @@ public class ClasterModel { // Common memory supercomputer model for beginning
     public ClasterModel() {
         this.fullMemory = 0;
         this.memoryUsed = 0;
+    }
+    
+    public void addListener(ClusterListener l) {
+        listeners.add(l);
+    }
+    
+    public List<ComputerModel> getComputers() {
+        return Collections.unmodifiableList(computers);
     }
 
     /**
@@ -44,7 +56,15 @@ public class ClasterModel { // Common memory supercomputer model for beginning
      */
     public void addComputer(ComputerModel computer) {
         computers.add(computer);
+        int i = computers.size() - 1;
+        listeners.forEach(l -> l.computerAdded(i));
     }
+    
+    public void removeComputer(int index) {
+        computers.remove(index);
+        listeners.forEach(l -> l.computerRemoved(index));
+    }
+    
 
     /**
      * Simulates use of memory,

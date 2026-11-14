@@ -10,18 +10,19 @@ import pl.polsl.Model.ClasterModel;
 import pl.polsl.Model.ComputerModel;
 import pl.polsl.Model.FindModel;
 import pl.polsl.Model.TaskModel;
+import pl.polsl.Model.TaskQueueModel;
 import pl.polsl.View.ConsoleView;
 import pl.polsl.strategy.HStandardFindTaskQueueStrategy;
 
 /**
- * Not supported anymore.
+ * @deprecated Not supported anymore.
  * @version 1.1
- * @author uzytkownikr
+ * @author uzytkownikr 
  */
 public class Controller {
 
     private final ClasterModel clusterModel;
-    private final ArrayDeque<TaskModel> taskModels;
+    private final TaskQueueModel taskModels;
     private final ConsoleView view;
 
     /**
@@ -32,7 +33,7 @@ public class Controller {
      * @param models Queue of tasks to be performed - M.
      * @param view View object, User Interface - V.
      */
-    public Controller(ClasterModel clusterModel, ArrayDeque<TaskModel> models, ConsoleView view) {
+    public Controller(ClasterModel clusterModel, TaskQueueModel models, ConsoleView view) {
         this.clusterModel = clusterModel;
         this.taskModels = models;
         this.view = view;
@@ -43,7 +44,7 @@ public class Controller {
      */
     private void printTasks() {
         view.print("Uzyskana kolejka Zadan: ");
-        view.showTaskQueue(taskModels);
+        //view.showTaskQueue(taskModels);
     }
 
     /**
@@ -57,7 +58,7 @@ public class Controller {
                     Integer.parseInt(view.readLine("Podaj Liczbe wymaganej pamieci(w Bajtach): ")),
                     Integer.parseInt(view.readLine("Podaj potrzebna liczbe wezlow: ")),
                     view.readLine("Podaj nazwe wymaganego modelu: "));
-            taskModels.add(task);
+            //taskModels.add(task);
 
             view.print("Dodano zadanie T_ID=" + task.getId());
 

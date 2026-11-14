@@ -10,9 +10,11 @@ package pl.polsl.Model;
  */
 public class TaskModel {
 
+    private static int taskCounter = 0;
+    
     private final int demandedMemory;
     private final int numberOfNodes;
-    private static int taskId;
+    private int taskId;
     private final String requiredCPUModel;
 
     /**
@@ -28,7 +30,7 @@ public class TaskModel {
         this.demandedMemory = demandedMemory;
         this.numberOfNodes = numberOfNodes;
         this.requiredCPUModel = requiredCPUModel;
-        ++taskId;
+        this.taskId = ++taskCounter;
     }
 
     /**
@@ -47,5 +49,13 @@ public class TaskModel {
      */
     public int getDemandedMemory() {
         return this.demandedMemory;
+    }
+    
+    public int getNumberOfNodes() {
+        return this.numberOfNodes;
+    }
+    
+    public String getRequiredCPUModel() {
+        return this.requiredCPUModel;
     }
 }

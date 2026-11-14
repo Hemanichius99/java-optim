@@ -6,12 +6,13 @@ package pl.polsl.GUI;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.Set;
 import pl.polsl.Model.ClasterModel;
 import pl.polsl.Model.ComputerModel;
 import pl.polsl.Model.FindModel;
+import pl.polsl.Model.NodeTableModel;
 import pl.polsl.Model.TaskModel;
-import pl.polsl.strategy.FindTaskQueueStrategy;
+import pl.polsl.Model.TaskQueueModel;
+import pl.polsl.Model.TaskTableModel;
 import pl.polsl.strategy.HStandardFindTaskQueueStrategy;
 
 /**
@@ -27,6 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        initTables();
     }
 
     /**
@@ -269,9 +271,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void OkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkButtonActionPerformed
         FindModel findModel = new FindModel();
-        
+
         findModel.setStrategy(new HStandardFindTaskQueueStrategy());
-        
+
         Queue<TaskModel> queue = findModel.findQueue(taskModels, clusterModel);
 
         String text = "Wynik:";
@@ -302,7 +304,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         TaskModel task = new TaskModel(demandedMemory, numberOfNodes, requiredModel);
 
-        taskModels.add(task);
+        taskModels.offer(task);
 
         TaskInfoLabel.setVisible(true);
         TaskInfoLabel.setText("Dodano zadanie T_ID=" + task.getId());
@@ -345,11 +347,25 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new MainFrame().setVisible(true));
     }
 
+    private void initTables() {
+        nTableModel = new NodeTableModel(clusterModel);
+        tTableModel = new TaskTableModel(taskModels);
+        NodesTable.setModel(nTableModel);
+        TaskTable.setModel(tTableModel);
+
+        NodesTable.setAutoCreateRowSorter(true);
+        TaskTable.setAutoCreateRowSorter(true);
+    }
+
     // Models
     private ClasterModel clusterModel = new pl.polsl.Model.ClasterModel();
     ;
-    private ArrayDeque<TaskModel> taskModels = new ArrayDeque<>();
+    private TaskQueueModel taskModels = new TaskQueueModel();
     ;
+    // Table Models
+    private NodeTableModel nTableModel;
+    private TaskTableModel tTableModel;
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCPUButton;
@@ -376,4 +392,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
 }
