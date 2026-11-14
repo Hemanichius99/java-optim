@@ -5,7 +5,7 @@
 package pl.polsl.Model;
 
 /**
- * @version 1.1
+ * @version 1.3
  * @author SuperStudent-PL
  */
 public class TaskModel {

@@ -11,7 +11,7 @@ import pl.polsl.Model.TaskModel;
 import pl.polsl.Model.TaskQueueModel;
 
 /**
- * @version 1.1
+ * @version 1.3
  * @author uzytkownikr
  */
 public class HStandardFindTaskQueueStrategy implements FindTaskQueueStrategy {

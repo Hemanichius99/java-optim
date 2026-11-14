@@ -11,7 +11,7 @@ import pl.polsl.Observer.TaskQueueListener;
 import pl.polsl.Model.TaskQueueModel;
 
 /**
- * @version 1.0
+ * @version 1.3
  * @author uzytkownikr
  */
 public class TaskTableModel extends AbstractTableModel implements TaskQueueListener {

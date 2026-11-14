@@ -16,7 +16,7 @@ import pl.polsl.Model.TaskTableModel;
 import pl.polsl.strategy.HStandardFindTaskQueueStrategy;
 
 /**
- * @version 1.2
+ * @version 1.3
  * @author uzytkownikr
  */
 public class MainFrame extends javax.swing.JFrame {

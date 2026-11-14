@@ -11,7 +11,7 @@ import java.util.Queue;
 import pl.polsl.Observer.TaskQueueListener;
 
 /**
- *
+ * @version 1.3
  * @author uzytkownikr
  */
 public class TaskQueueModel {

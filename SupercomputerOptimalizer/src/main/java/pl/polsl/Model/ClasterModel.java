@@ -13,7 +13,7 @@ import pl.polsl.Exceptions.NotEnoughMemoryException;
 import pl.polsl.Observer.ClusterListener;
 
 /**
- * @version 1.1
+ * @version 1.3
  * @author SuperStudent-PL
  */
 public class ClasterModel { // Common memory supercomputer model for beginning

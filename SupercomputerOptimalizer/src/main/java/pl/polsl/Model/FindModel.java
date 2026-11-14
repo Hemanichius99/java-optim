@@ -9,7 +9,7 @@ import java.util.Queue;
 import pl.polsl.strategy.FindTaskQueueStrategy;
 
 /**
- * @version 1.1
+ * @version 1.3
  * @author uzytkownikr
  */
 public class FindModel {

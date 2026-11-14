@@ -11,7 +11,7 @@ import pl.polsl.Observer.ClusterListener;
 import pl.polsl.Model.ClasterModel;
 
 /**
- * @version 1.0
+ * @version 1.3
  * @author uzytkownikr
  */
 public class NodeTableModel extends AbstractTableModel implements ClusterListener {

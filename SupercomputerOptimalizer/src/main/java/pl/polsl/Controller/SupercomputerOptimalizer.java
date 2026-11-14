@@ -6,7 +6,7 @@ package pl.polsl.Controller;
 import pl.polsl.GUI.*;
 
 /**
- * @version 1.1
+ * @version 1.3
  * @author Remigiusz Limański
  */
 public class SupercomputerOptimalizer {
@@ -17,6 +17,8 @@ public class SupercomputerOptimalizer {
         4. GUI Field validation
         5. Correct exception throwing and handling. There are somwhere unhandled exceptions
         6. Final version from 2nd lab includes pt3.
+        7. Do exceptions messages show in GUI, not in terminal
+        8. Main func params should be in empty TextFields in GUI
         Finally. Code review according to KISS, DRY, SOLID.
         Post-Finally. Doc anaylze and add whats needed.
     */

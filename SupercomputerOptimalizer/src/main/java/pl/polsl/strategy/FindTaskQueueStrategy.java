@@ -11,7 +11,7 @@ import pl.polsl.Model.TaskModel;
 import pl.polsl.Model.TaskQueueModel;
 
 /**
- * @version 1.2
+ * @version 1.3
  * @author uzytkownikr
  */
 public interface FindTaskQueueStrategy {

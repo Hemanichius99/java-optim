@@ -7,7 +7,7 @@ package pl.polsl.Observer;
 import pl.polsl.Model.TaskModel;
 
 /**
- * @version 1.0
+ * @version 1.3
  * @author uzytkownikr
  */
 public interface TaskQueueListener {
