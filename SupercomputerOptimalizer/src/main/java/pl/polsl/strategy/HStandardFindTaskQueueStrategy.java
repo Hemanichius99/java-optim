@@ -24,7 +24,7 @@ public class HStandardFindTaskQueueStrategy implements FindTaskQueueStrategy {
      */
     @Override
     public ArrayDeque<TaskModel> find(Collection<TaskModel> tasks, ClasterModel cluster) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new RuntimeException("Not supportedd yet.");
     }
 
 }
