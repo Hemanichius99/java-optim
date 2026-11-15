@@ -13,11 +13,7 @@ public class SupercomputerOptimalizer {
     // TODO !!! Tasks 
     /*  
         2. HStandardFindTaskQueueStrategy implementation of heuristic findQueue strat
-        3. Table with current Tasks and Table with current nodes(CPUs) in GUI
         4. GUI Field validation
-        5. Correct exception throwing and handling. There are somwhere unhandled exceptions
-        6. Final version from 2nd lab includes pt3.
-        7. Do exceptions messages show in GUI, not in terminal
         8. Main func params should be in empty TextFields in GUI
         Finally. Code review according to KISS, DRY, SOLID.
         Post-Finally. Doc anaylze and add whats needed.
@@ -28,11 +24,11 @@ public class SupercomputerOptimalizer {
      * Main function of that program, it is using MVC to connect the modules.
      * After addition of swing GUI it calls buidGUI from MainFrame class, and
      * thats all, so args now don't matter
-     *
-     * @param args now after adding gui useless, but for being able to quickly
-     * reprogrm to consolveView it will remain.
+     *@param args arguments inserted in terminal mode
+     * It has to be 5 Args: $Demanded_Memory $CPUModel $NumberOfNodes $RequiredCPUModel $RequiredMemory
+     * for example: 80960000 "AMD EPYC 7002" 1 "AMD EPYC 7002" 40960000
      */
     public static void main(String[] args) {
-        MainFrame.buildGUI();
+        MainFrame.buildGUI(args);
     }
 }

@@ -25,7 +25,7 @@ public class HStandardFindTaskQueueStrategy implements FindTaskQueueStrategy {
      */
     @Override
     public ArrayDeque<TaskModel> find(TaskQueueModel taskQueue, ClasterModel cluster) {
-        throw new RuntimeException("Not supportedd yet.");
+        throw new RuntimeException("Not supported yet.");
     }
 
 }

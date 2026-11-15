@@ -170,6 +170,9 @@
         <Property name="mnemonic" type="int" value="107"/>
         <Property name="text" type="java.lang.String" value="OK"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="CommonMemoryTextField"/>
+        </Property>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Zatwierdz i znajdz optymalna kolejke"/>
@@ -206,6 +209,9 @@
       <Properties>
         <Property name="mnemonic" type="int" value="99"/>
         <Property name="text" type="java.lang.String" value="Dodaj procesor"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="NumberOfNodesTextField"/>
+        </Property>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Dodaje procesor do superkomputera"/>

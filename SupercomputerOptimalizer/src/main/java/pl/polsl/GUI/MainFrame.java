@@ -6,6 +6,8 @@ package pl.polsl.GUI;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
+import javax.swing.SwingUtilities;
+import pl.polsl.Exceptions.NotEnoughMemoryException;
 import pl.polsl.Model.ClasterModel;
 import pl.polsl.Model.ComputerModel;
 import pl.polsl.Model.FindModel;
@@ -29,6 +31,9 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         initTables();
+        handleArgs();
+
+        SwingUtilities.invokeLater(() -> CommonMemoryTextField.requestFocusInWindow()); // Focus first texfield for tab navigation.
     }
 
     /**
@@ -82,6 +87,7 @@ public class MainFrame extends javax.swing.JFrame {
         OkButton.setMnemonic('k');
         OkButton.setText("OK");
         OkButton.setToolTipText("");
+        OkButton.setNextFocusableComponent(CommonMemoryTextField);
         OkButton.addActionListener(this::OkButtonActionPerformed);
 
         CommonMemoryTextField.setNextFocusableComponent(CPUModelTextField);
@@ -93,6 +99,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         AddCPUButton.setMnemonic('c');
         AddCPUButton.setText("Dodaj procesor");
+        AddCPUButton.setNextFocusableComponent(NumberOfNodesTextField);
         AddCPUButton.addActionListener(this::AddCPUButtonActionPerformed);
 
         jLabel4.setText("Wymagana liczba wezlow");
@@ -274,17 +281,21 @@ public class MainFrame extends javax.swing.JFrame {
 
         findModel.setStrategy(new HStandardFindTaskQueueStrategy());
 
-        Queue<TaskModel> queue = findModel.findQueue(taskModels, clusterModel);
-
         String text = "Wynik:";
 
-        int i = 1;
-        for (TaskModel t : queue) { // TODO call external function QueueToString(queue) in order for easier code.
-            text += " " + i++ + ". " + t.getId();
-        }
+        try {
+            Queue<TaskModel> queue = findModel.findQueue(taskModels, clusterModel);
 
-        FInalQueueLabel.setVisible(true);
-        FInalQueueLabel.setText(text);
+            int i = 1;
+            for (TaskModel t : queue) { // TODO call external function QueueToString(queue) in order for easier code.
+                text += " " + i++ + ". " + t.getId();
+            }
+        } catch (NotEnoughMemoryException e) {
+            text = "Blad: " + e.getMessage();
+        } finally {
+            FInalQueueLabel.setVisible(true);
+            FInalQueueLabel.setText(text);
+        }
     }//GEN-LAST:event_OkButtonActionPerformed
 
     private void AddCPUButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCPUButtonActionPerformed
@@ -325,7 +336,7 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void buildGUI() {
+    public static void buildGUI(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -342,8 +353,10 @@ public class MainFrame extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
+
+        MainFrame.args = args;
+
         java.awt.EventQueue.invokeLater(() -> new MainFrame().setVisible(true));
     }
 
@@ -357,10 +370,26 @@ public class MainFrame extends javax.swing.JFrame {
         TaskTable.setAutoCreateRowSorter(true);
     }
 
+    private void handleArgs() {
+        var noOfArgs = MainFrame.args.length;
+
+        if (noOfArgs == 5) {
+
+            this.CommonMemoryTextField.setText(args[0]);
+            this.CPUModelTextField.setText(args[1]);
+            this.NumberOfNodesTextField.setText(args[2]);
+            this.RequiredCPUModelTextField.setText(args[3]);
+            this.DemandedMemoryTextField.setText(args[4]);
+        }
+    }
+
+    // args
+    private static String[] args;
+
     // Models
-    private ClasterModel clusterModel = new pl.polsl.Model.ClasterModel();
+    private final ClasterModel clusterModel = new pl.polsl.Model.ClasterModel();
     ;
-    private TaskQueueModel taskModels = new TaskQueueModel();
+    private final TaskQueueModel taskModels = new TaskQueueModel();
     ;
     // Table Models
     private NodeTableModel nTableModel;
