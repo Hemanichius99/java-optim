@@ -68,12 +68,13 @@ public class MainFrame extends javax.swing.JFrame {
         TaskTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         NodesTable = new javax.swing.JTable();
+        FinalQueueLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         OkButton.setMnemonic('k');
         OkButton.setText("OK");
-        OkButton.setToolTipText("");
+        OkButton.setToolTipText("Szukaj kolejke");
         OkButton.setNextFocusableComponent(CommonMemoryTextField);
         OkButton.addActionListener(this::OkButtonActionPerformed);
 
@@ -157,6 +158,8 @@ public class MainFrame extends javax.swing.JFrame {
         NodesTable.getAccessibleContext().setAccessibleName("Node table");
         NodesTable.getAccessibleContext().setAccessibleDescription("Table with supercompuer nodes");
 
+        FinalQueueLabel.setToolTipText("wynik");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -165,31 +168,33 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(OkButton)
-                        .addGap(280, 280, 280))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(CommonMemoryTextField)
-                            .addComponent(CPUInfoLabel)
-                            .addComponent(AddCPUButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CPUModelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TaskInfoLabel)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(NumberOfNodesTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(AddTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(RequiredCPUModelTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(DemandedMemoryTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(OkButton)
+                            .addGap(280, 280, 280))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(CommonMemoryTextField)
+                                .addComponent(CPUInfoLabel)
+                                .addComponent(AddCPUButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CPUModelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(44, 44, 44)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TaskInfoLabel)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(NumberOfNodesTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(AddTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(RequiredCPUModelTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(DemandedMemoryTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addComponent(FinalQueueLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
@@ -233,7 +238,9 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(TaskInfoLabel)))
                                 .addGap(29, 29, 29)
-                                .addComponent(OkButton))
+                                .addComponent(OkButton)
+                                .addGap(34, 34, 34)
+                                .addComponent(FinalQueueLabel))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -254,6 +261,7 @@ public class MainFrame extends javax.swing.JFrame {
         DemandedMemoryTextField.getAccessibleContext().setAccessibleDescription("w Batjach, wymagana wspolna pamiec do wykonania zadania");
         CPUModelTextField.getAccessibleContext().setAccessibleName("CPUModel");
         CPUModelTextField.getAccessibleContext().setAccessibleDescription("Nazwa modelu CPU dla wezla");
+        FinalQueueLabel.getAccessibleContext().setAccessibleDescription("wynik wypisany");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -282,8 +290,8 @@ public class MainFrame extends javax.swing.JFrame {
             text = "";
         }
         
-        FInalQueueLabel.setVisible(true);
-        FInalQueueLabel.setText(text);
+        FinalQueueLabel.setVisible(true);
+        FinalQueueLabel.setText(text);
     }//GEN-LAST:event_OkButtonActionPerformed
 
     private void AddCPUButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCPUButtonActionPerformed
@@ -408,6 +416,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField CPUModelTextField;
     private javax.swing.JTextField CommonMemoryTextField;
     private javax.swing.JTextField DemandedMemoryTextField;
+    private javax.swing.JLabel FinalQueueLabel;
     private javax.swing.JTable NodesTable;
     private javax.swing.JTextField NumberOfNodesTextField;
     private javax.swing.JButton OkButton;
