@@ -4,7 +4,6 @@
  */
 package pl.polsl.Model;
 
-import java.util.Collection;
 import java.util.Queue;
 import pl.polsl.strategy.FindTaskQueueStrategy;
 
@@ -13,25 +12,29 @@ import pl.polsl.strategy.FindTaskQueueStrategy;
  * @author uzytkownikr
  */
 public class FindModel {
+
     private FindTaskQueueStrategy strategy;
-    
+
     /**
      * sets concrete strategy that finds task queue.
+     *
      * @param strategy Strategy class that we want to use
      */
     public void setStrategy(FindTaskQueueStrategy strategy) {
         this.strategy = strategy;
     }
+
     /**
-     * 
-     * @param tasks same as in the interface.
+     *
+     * @param taskQueue same as in the interface.
+     * @param cluster cluster that we use to perform operations
      * @return result calculated via certain strategy.
      */
-     public Queue<TaskModel> findQueue(TaskQueueModel taskQueue, ClasterModel cluster) {
+    public Queue<TaskModel> findQueue(TaskQueueModel taskQueue, ClasterModel cluster) {
         if (strategy == null) {
-            throw new IllegalStateException("Strategy not set");
+            throw new IllegalStateException("Nie wybrano strategii.");
         }
-        
+
         return strategy.find(taskQueue, cluster);
     }
 }

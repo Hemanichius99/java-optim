@@ -17,7 +17,7 @@ import pl.polsl.strategy.HStandardFindTaskQueueStrategy;
 /**
  * @deprecated Not supported anymore.
  * @version 1.1
- * @author uzytkownikr 
+ * @author uzytkownikr
  */
 public class Controller {
 
@@ -125,7 +125,7 @@ public class Controller {
         try {
             FindModel fm = new FindModel();
             fm.setStrategy(new HStandardFindTaskQueueStrategy());
-            
+
             fm.findQueue(taskModels, clusterModel);
         } catch (NotEnoughMemoryException e) {
             view.print("Blad: " + e.getMessage());

@@ -5,23 +5,20 @@
 package pl.polsl.Model;
 
 import java.util.ArrayList;
-import java.util.Queue;
-import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.List;
-import pl.polsl.Exceptions.NotEnoughMemoryException;
 import pl.polsl.Observer.ClusterListener;
 
 /**
- * @version 1.3
+ * @version 1.4
  * @author SuperStudent-PL
  */
 public class ClasterModel { // Common memory supercomputer model for beginning
 
     private final List<ComputerModel> computers = new ArrayList<>();
     private final List<ClusterListener> listeners = new ArrayList<>();
-    private int memoryUsed;
-    private int fullMemory;
+    private long memoryUsed;
+    private long fullMemory;
 
     /**
      * Constructor sets field-values to 0
@@ -30,11 +27,20 @@ public class ClasterModel { // Common memory supercomputer model for beginning
         this.fullMemory = 0;
         this.memoryUsed = 0;
     }
-    
+
+    /**
+     * adds listener to a list.
+     *
+     * @param l listener that we want to inform about computers list changes.
+     */
     public void addListener(ClusterListener l) {
         listeners.add(l);
     }
-    
+
+    /**
+     *
+     * @return computers list as undodifiableList
+     */
     public List<ComputerModel> getComputers() {
         return Collections.unmodifiableList(computers);
     }
@@ -45,7 +51,7 @@ public class ClasterModel { // Common memory supercomputer model for beginning
      * @param fullMemory new amount of common full memmory in supercomputer in
      * bytes
      */
-    public void setFullMemory(int fullMemory) {
+    public void setFullMemory(long fullMemory) {
         this.fullMemory = fullMemory;
     }
 
@@ -59,12 +65,16 @@ public class ClasterModel { // Common memory supercomputer model for beginning
         int i = computers.size() - 1;
         listeners.forEach(l -> l.computerAdded(i));
     }
-    
+
+    /**
+     * removes computer from list.
+     *
+     * @param index index of computer in list
+     */
     public void removeComputer(int index) {
         computers.remove(index);
         listeners.forEach(l -> l.computerRemoved(index));
     }
-    
 
     /**
      * Simulates use of memory,
@@ -73,7 +83,7 @@ public class ClasterModel { // Common memory supercomputer model for beginning
      * some task
      * @return boolean value of thus our assertion failed or not.
      */
-    public boolean useMemory(int memoryToUse) {
+    public boolean useMemory(long memoryToUse) {
         if (fullMemory - memoryUsed > memoryToUse) {
             memoryUsed += memoryToUse;
 

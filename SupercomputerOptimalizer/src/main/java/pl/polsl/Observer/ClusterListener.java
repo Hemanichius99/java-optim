@@ -9,6 +9,18 @@ package pl.polsl.Observer;
  * @author uzytkownikr
  */
 public interface ClusterListener {
+
+    /**
+     * Notify method called on computer addition.
+     *
+     * @param index index of added item.
+     */
     void computerAdded(int index);
+
+    /**
+     * Notfiy method called on computer removal.
+     *
+     * @param index index of removed item.
+     */
     void computerRemoved(int index);
 }

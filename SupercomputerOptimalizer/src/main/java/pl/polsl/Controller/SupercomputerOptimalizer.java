@@ -12,10 +12,7 @@ import pl.polsl.GUI.*;
 public class SupercomputerOptimalizer {
     // TODO !!! Tasks 
     /*  
-        2. HStandardFindTaskQueueStrategy implementation of heuristic findQueue strat
-        4. GUI Field validation
-        Finally. Code review according to KISS, DRY, SOLID.
-        Post-Finally. Doc anaylze and add whats needed.
+        HStandardFindTaskQueueStrategy implementation of heuristic findQueue strat
     */
     
     

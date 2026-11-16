@@ -8,22 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import pl.polsl.Observer.TaskQueueListener;
-import pl.polsl.Model.TaskQueueModel;
 
 /**
- * @version 1.3
+ * @version 1.4
  * @author uzytkownikr
  */
 public class TaskTableModel extends AbstractTableModel implements TaskQueueListener {
 
     private static final String[] cols = {"T_ID", "CPU Model", "Pamiec", "Wezly"};
     private final List<TaskModel> rows = new ArrayList<>();
-    
+
     public TaskTableModel(TaskQueueModel src) {
         rows.addAll(src.initialState()); // Copied only once there
         src.addListener(this);
     }
-    
+
     @Override
     public int getRowCount() {
         return rows.size();
@@ -33,7 +32,7 @@ public class TaskTableModel extends AbstractTableModel implements TaskQueueListe
     public int getColumnCount() {
         return cols.length;
     }
-    
+
     @Override
     public String getColumnName(int c) {
         return cols[c];
@@ -43,10 +42,14 @@ public class TaskTableModel extends AbstractTableModel implements TaskQueueListe
     public Object getValueAt(int rowIndex, int columnIndex) {
         TaskModel t = rows.get(rowIndex);
         return switch (columnIndex) {
-            case 0 -> t.getId();
-            case 1 -> t.getRequiredCPUModel();
-            case 2 -> t.getDemandedMemory();
-            default -> t.getNumberOfNodes();
+            case 0 ->
+                t.getId();
+            case 1 ->
+                t.getRequiredCPUModel();
+            case 2 ->
+                t.getDemandedMemory();
+            default ->
+                t.getNumberOfNodes();
         };
     }
 

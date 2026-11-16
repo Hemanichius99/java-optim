@@ -11,10 +11,10 @@ package pl.polsl.Model;
 public class TaskModel {
 
     private static int taskCounter = 0;
-    
-    private final int demandedMemory;
+
+    private final long demandedMemory;
     private final int numberOfNodes;
-    private int taskId;
+    private final int taskId;
     private final String requiredCPUModel;
 
     /**
@@ -26,7 +26,7 @@ public class TaskModel {
      * @param taskId integer number that represents id of that task.
      * @param requiredCPUModel required cpu model for a task.
      */
-    public TaskModel(int demandedMemory, int numberOfNodes, String requiredCPUModel) {
+    public TaskModel(long demandedMemory, int numberOfNodes, String requiredCPUModel) {
         this.demandedMemory = demandedMemory;
         this.numberOfNodes = numberOfNodes;
         this.requiredCPUModel = requiredCPUModel;
@@ -36,7 +36,7 @@ public class TaskModel {
     /**
      * Getter for id value.
      *
-     * @return Integer value of pseudounique task id.
+     * @return Integer value of unique task id.
      */
     public int getId() {
         return this.taskId;
@@ -47,14 +47,22 @@ public class TaskModel {
      *
      * @return integer value of demanded memory in bytes for that task.
      */
-    public int getDemandedMemory() {
+    public long getDemandedMemory() {
         return this.demandedMemory;
     }
-    
+
+    /**
+     *
+     * @return demanded numberOfNodes of task.
+     */
     public int getNumberOfNodes() {
         return this.numberOfNodes;
     }
-    
+
+    /**
+     *
+     * @return requiredCPUModel to perform that task.
+     */
     public String getRequiredCPUModel() {
         return this.requiredCPUModel;
     }

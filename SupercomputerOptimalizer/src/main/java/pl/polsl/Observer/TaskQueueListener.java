@@ -11,6 +11,18 @@ import pl.polsl.Model.TaskModel;
  * @author uzytkownikr
  */
 public interface TaskQueueListener {
+
+    /**
+     * Notify method called on item being added to queue.
+     *
+     * @param t task being added
+     */
     void itemEnqueued(TaskModel t);
+
+    /**
+     * Notify method called on item beign removed(taken) from queue.
+     *
+     * @param t task being taken.
+     */
     void itemDequeued(TaskModel t);
 }
