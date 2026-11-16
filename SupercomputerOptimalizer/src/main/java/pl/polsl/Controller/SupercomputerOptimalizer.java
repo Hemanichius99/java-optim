@@ -14,7 +14,6 @@ public class SupercomputerOptimalizer {
     /*  
         2. HStandardFindTaskQueueStrategy implementation of heuristic findQueue strat
         4. GUI Field validation
-        8. Main func params should be in empty TextFields in GUI
         Finally. Code review according to KISS, DRY, SOLID.
         Post-Finally. Doc anaylze and add whats needed.
     */

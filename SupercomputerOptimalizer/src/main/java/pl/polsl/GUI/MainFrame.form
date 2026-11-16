@@ -238,6 +238,9 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Wymagana liczba wezlow"/>
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="liczba wezlow potrzebnych do zrealizowania zadania"/>
       </AccessibilityProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NumberOfNodesTextFieldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -254,6 +257,9 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Nazwa wymaganego modelu CPU"/>
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Potrzebna do wykonania tego zadania"/>
       </AccessibilityProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RequiredCPUModelTextFieldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="AddTaskButton">
       <Properties>

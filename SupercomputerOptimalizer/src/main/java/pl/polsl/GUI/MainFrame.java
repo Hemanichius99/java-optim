@@ -7,6 +7,8 @@ package pl.polsl.GUI;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import pl.polsl.Exceptions.NotEnoughMemoryException;
 import pl.polsl.Model.ClasterModel;
 import pl.polsl.Model.ComputerModel;
@@ -32,6 +34,9 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         initTables();
         handleArgs();
+        
+        javax.swing.JTextField ar[] = {CommonMemoryTextField, NumberOfNodesTextField, DemandedMemoryTextField};
+        validateTextFields(ar);
 
         SwingUtilities.invokeLater(() -> CommonMemoryTextField.requestFocusInWindow()); // Focus first texfield for tab navigation.
     }
@@ -106,10 +111,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         NumberOfNodesTextField.setNextFocusableComponent(RequiredCPUModelTextField);
         NumberOfNodesTextField.setOpaque(true);
+        NumberOfNodesTextField.addActionListener(this::NumberOfNodesTextFieldActionPerformed);
 
         jLabel5.setText("Nazwa wymaganego modelu CPU");
 
         RequiredCPUModelTextField.setNextFocusableComponent(DemandedMemoryTextField);
+        RequiredCPUModelTextField.addActionListener(this::RequiredCPUModelTextFieldActionPerformed);
 
         AddTaskButton.setMnemonic('t');
         AddTaskButton.setText("Dodaj zadanie");
@@ -326,12 +333,20 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_DemandedMemoryTextFieldActionPerformed
 
     private void CommonMemoryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CommonMemoryTextFieldActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
     }//GEN-LAST:event_CommonMemoryTextFieldActionPerformed
 
     private void CPUModelTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPUModelTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CPUModelTextFieldActionPerformed
+
+    private void RequiredCPUModelTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequiredCPUModelTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RequiredCPUModelTextFieldActionPerformed
+
+    private void NumberOfNodesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumberOfNodesTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NumberOfNodesTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,6 +374,20 @@ public class MainFrame extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(() -> new MainFrame().setVisible(true));
     }
+    
+    private void validateTextFields(javax.swing.JTextField[] textFields) {
+        
+        for (var textField : textFields) {
+            textField.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) { tryDigit(textField);}
+                @Override
+                public void removeUpdate(DocumentEvent e) { } // do nothing
+                @Override
+                public void changedUpdate(DocumentEvent e) { tryDigit(textField);}
+        });
+        }
+    }
 
     private void initTables() {
         nTableModel = new NodeTableModel(clusterModel);
@@ -368,6 +397,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         NodesTable.setAutoCreateRowSorter(true);
         TaskTable.setAutoCreateRowSorter(true);
+    }
+    
+    private void tryDigit(javax.swing.JTextField textField) {
+        if (!textField.getText().matches("\\d*")) {
+            java.awt.EventQueue.invokeLater(() ->  textField.setText("")); // There has to be that invokeLater() IMPORTANT !!!
+        }
     }
 
     private void handleArgs() {

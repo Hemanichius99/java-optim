@@ -11,6 +11,7 @@ pl\polsl\strategy\HStandardFindTaskQueueStrategy.class
 pl\polsl\Model\TaskTableModel.class
 pl\polsl\strategy\FindTaskQueueStrategy.class
 pl\polsl\Controller\Controller.class
+pl\polsl\GUI\MainFrame$1.class
 pl\polsl\Model\TaskQueueModel.class
 pl\polsl\View\ConsoleView.class
 pl\polsl\Exceptions\NotEnoughMemoryException.class
