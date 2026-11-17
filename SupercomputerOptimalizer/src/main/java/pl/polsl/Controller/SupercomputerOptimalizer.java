@@ -13,6 +13,8 @@ public class SupercomputerOptimalizer {
     // TODO !!! Tasks 
     /*  
         HStandardFindTaskQueueStrategy implementation of heuristic findQueue strat
+        Final version vol3 (Enum, Template, Addnotation, labmda interface), (stream computing).
+        
     */
     
     

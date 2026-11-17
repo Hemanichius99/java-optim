@@ -10,7 +10,8 @@ import javax.swing.text.DocumentFilter;
 
 /**
  * @version 1.4
- * @author uzytkownikr AI GENERATED CLASS
+ * @author uzytkownikr 
+ * AI GENERATED CLASS
  */
 public class NumberDecorator extends DocumentFilter {
 
