@@ -4,7 +4,11 @@
  */
 package pl.polsl.GUI;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Queue;
+import java.util.Set;
 import javax.swing.SwingUtilities;
 import javax.swing.text.AbstractDocument;
 import pl.polsl.Exceptions.NotEnoughMemoryException;
@@ -19,7 +23,7 @@ import pl.polsl.strategy.HStandardFindTaskQueueStrategy;
 import pl.polsl.Decorator.NumberDecorator;
 
 /**
- * @version 1.4
+ * @version 1.5
  * @author uzytkownikr
  */
 public class MainFrame extends javax.swing.JFrame {
@@ -34,7 +38,8 @@ public class MainFrame extends javax.swing.JFrame {
         initTables();
         handleArgs();
 
-        javax.swing.JTextField integerOnlyTextFields[] = {CommonMemoryTextField, NumberOfNodesTextField, DemandedMemoryTextField};
+        final Set<javax.swing.JTextField> integerOnlyTextFields = new HashSet<>(Arrays.asList(CommonMemoryTextField, NumberOfNodesTextField, DemandedMemoryTextField)); // I Use set here, cause I dont mind order
+        
         validateTextFields(integerOnlyTextFields);
 
         SwingUtilities.invokeLater(() -> CommonMemoryTextField.requestFocusInWindow()); // Focus first texfield for tab navigation.
@@ -278,7 +283,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             int i = 1;
             for (TaskModel t : queue) { // TODO call external function QueueToString(queue) in order for easier code.
-                text += " " + i++ + ". " + t.getId();
+                text += " " + i++ + ". " + t.taskId();
             }
         } catch (NotEnoughMemoryException e) {
             javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Blad Pamieci", javax.swing.JOptionPane.WARNING_MESSAGE);
@@ -301,7 +306,7 @@ public class MainFrame extends javax.swing.JFrame {
         clusterModel.addComputer(computer);
 
         CPUInfoLabel.setVisible(true);
-        CPUInfoLabel.setText("Dodano wezel oparty o model: " + computer.getModel());
+        CPUInfoLabel.setText("Dodano wezel oparty o model: " + computer.CPUModel());
     }//GEN-LAST:event_AddCPUButtonActionPerformed
 
     private void AddTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTaskButtonActionPerformed
@@ -314,7 +319,7 @@ public class MainFrame extends javax.swing.JFrame {
         taskModels.offer(task);
 
         TaskInfoLabel.setVisible(true);
-        TaskInfoLabel.setText("Dodano zadanie T_ID=" + task.getId());
+        TaskInfoLabel.setText("Dodano zadanie T_ID=" + task.taskId());
     }//GEN-LAST:event_AddTaskButtonActionPerformed
 
     private void DemandedMemoryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DemandedMemoryTextFieldActionPerformed
@@ -366,7 +371,7 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new MainFrame().setVisible(true));
     }
 
-    private void validateTextFields(javax.swing.JTextField[] textFields) {
+    private void validateTextFields(Collection<javax.swing.JTextField> textFields) {
         for (var textField : textFields) {
             ((AbstractDocument) textField.getDocument())
                     .setDocumentFilter(new NumberDecorator(null));

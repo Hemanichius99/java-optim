@@ -7,15 +7,17 @@ package pl.polsl.Model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lombok.Data;
 import pl.polsl.Observer.ClusterListener;
 
 /**
  * @version 1.4
  * @author SuperStudent-PL
  */
+@Data
 public class ClasterModel { // Common memory supercomputer model for beginning
 
-    private final List<ComputerModel> computers = new ArrayList<>();
+    private final List<ComputerModel> computers = Collections.checkedList(new ArrayList<>(), ComputerModel.class);
     private final List<ClusterListener> listeners = new ArrayList<>();
     private long memoryUsed;
     private long fullMemory;
@@ -44,17 +46,7 @@ public class ClasterModel { // Common memory supercomputer model for beginning
     public List<ComputerModel> getComputers() {
         return Collections.unmodifiableList(computers);
     }
-
-    /**
-     * sets new value for field fullMemory
-     *
-     * @param fullMemory new amount of common full memmory in supercomputer in
-     * bytes
-     */
-    public void setFullMemory(long fullMemory) {
-        this.fullMemory = fullMemory;
-    }
-
+    
     /**
      * Adds new cpu to supercomputer cluster to arraylist.
      *
@@ -75,6 +67,10 @@ public class ClasterModel { // Common memory supercomputer model for beginning
         computers.remove(index);
         listeners.forEach(l -> l.computerRemoved(index));
     }
+    
+    public int numberOfNodes() {
+        return this.computers.size();
+    }
 
     /**
      * Simulates use of memory,
@@ -91,14 +87,5 @@ public class ClasterModel { // Common memory supercomputer model for beginning
         }
 
         return false; // Failure, Could not allocate memory, no resources
-    }
-
-    /**
-     * Way to get number of nodes in supercomputer.
-     *
-     * @return number of nodes in cluster so size of arraylist.
-     */
-    public int numberOfNodes() {
-        return computers.size();
     }
 }

@@ -9,9 +9,12 @@ import java.util.Scanner;
 import java.util.Collection;
 
 /**
+ * @deprecated Does not support console ui.
  * @version 1.1
  * @author SuperStudent-PL
  */
+
+@Deprecated
 public class ConsoleView {
 
     private final Scanner in = new Scanner(System.in);
@@ -50,7 +53,7 @@ public class ConsoleView {
     public void showTaskQueue(Collection<TaskModel> tasks) {
         int i = 1;
         for (TaskModel t : tasks) {
-            System.out.println(" " + i++ + ". " + t.getId());
+            System.out.println(" " + i++ + ". " + t.taskId());
         }
     }
 }

@@ -1,8 +1,0 @@
-pl.polsl.Controller
-pl.polsl.Decorator
-pl.polsl.Exceptions
-pl.polsl.GUI
-pl.polsl.Model
-pl.polsl.Observer
-pl.polsl.strategy
-pl.polsl.View

@@ -19,6 +19,8 @@ import pl.polsl.strategy.HStandardFindTaskQueueStrategy;
  * @version 1.1
  * @author uzytkownikr
  */
+
+@Deprecated
 public class Controller {
 
     private final ClasterModel clusterModel;
@@ -60,7 +62,7 @@ public class Controller {
                     view.readLine("Podaj nazwe wymaganego modelu: "));
             //taskModels.add(task);
 
-            view.print("Dodano zadanie T_ID=" + task.getId());
+            view.print("Dodano zadanie T_ID=" + task.taskId());
 
             var response = view.readLine("Czy chcesz dodac kolejne zadanie (T/n): ");
 
@@ -82,7 +84,7 @@ public class Controller {
             ComputerModel computer = new ComputerModel(view.readLine("Podaj nazwe modelu CPU: "));
             clusterModel.addComputer(computer);
 
-            view.print("Dodano wezel " + computer.getModel());
+            view.print("Dodano wezel " + computer.CPUModel());
 
             var response = view.readLine("Czy chcesz dodac kolejny wezel (T/n): ");
 

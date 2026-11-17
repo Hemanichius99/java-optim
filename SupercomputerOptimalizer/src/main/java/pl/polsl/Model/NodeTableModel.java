@@ -4,17 +4,19 @@
  */
 package pl.polsl.Model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import pl.polsl.Observer.ClusterListener;
-import pl.polsl.Model.ClasterModel;
 
 /**
- * @version 1.3
+ * @version 1.5
  * @author uzytkownikr
  */
 public class NodeTableModel extends AbstractTableModel implements ClusterListener {
 
-    private static final String[] cols = {"CPU Model"};
+    private static final List<String> cols = new ArrayList<>(Arrays.asList("CPU Model"));
     private final ClasterModel cluster;
 
     public NodeTableModel(ClasterModel cluster) {
@@ -29,18 +31,18 @@ public class NodeTableModel extends AbstractTableModel implements ClusterListene
 
     @Override
     public int getColumnCount() {
-        return cols.length;
+        return cols.size();
     }
 
     @Override
     public String getColumnName(int c) {
-        return cols[c];
+        return cols.get(c);
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         ComputerModel c = cluster.getComputers().get(rowIndex);
-        return c.getModel();
+        return c.CPUModel();
     }
 
     @Override

@@ -5,17 +5,18 @@
 package pl.polsl.Model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import pl.polsl.Observer.TaskQueueListener;
 
 /**
- * @version 1.4
+ * @version 1.5
  * @author uzytkownikr
  */
 public class TaskTableModel extends AbstractTableModel implements TaskQueueListener {
 
-    private static final String[] cols = {"T_ID", "CPU Model", "Pamiec", "Wezly"};
+    private static final List<String> cols = new ArrayList<>(Arrays.asList("T_ID", "CPU Model", "Pamiec", "Wezly"));
     private final List<TaskModel> rows = new ArrayList<>();
 
     public TaskTableModel(TaskQueueModel src) {
@@ -30,12 +31,12 @@ public class TaskTableModel extends AbstractTableModel implements TaskQueueListe
 
     @Override
     public int getColumnCount() {
-        return cols.length;
+        return cols.size();
     }
 
     @Override
     public String getColumnName(int c) {
-        return cols[c];
+        return cols.get(c);
     }
 
     @Override
@@ -43,13 +44,13 @@ public class TaskTableModel extends AbstractTableModel implements TaskQueueListe
         TaskModel t = rows.get(rowIndex);
         return switch (columnIndex) {
             case 0 ->
-                t.getId();
+                t.taskId();
             case 1 ->
-                t.getRequiredCPUModel();
+                t.requiredCPUModel();
             case 2 ->
-                t.getDemandedMemory();
+                t.demandedMemory();
             default ->
-                t.getNumberOfNodes();
+                t.numberOfNodes();
         };
     }
 
